@@ -1,0 +1,20 @@
+In this assignment, I made 2 docker networks (net_server and net_client) to containerize my client-server application. 
+I transferred mydata.txt from server/client containers and verified that its values were the same. 
+
+I built my docker containers using: 
+docker build -t my_server_img ./server_app docker build -t my_client_img ./client_app
+
+To run my script, in one terminal run ./run_server.sh
+
+This makes the user-defined networks and the server_persistent_storage directory.
+
+It builds the server image and starts the container, mounting the volume to /server_storage and sets the port (8080) as a command-line argument and connects the server to both networks so the client can find it.
+
+In another terminal run ./run_client.sh
+
+This script makes client_persistent_storage directory and builds the client image and automatically gets the server's IP address on the network and runs the client container. The client connects, receives the file, and saves in /client_persistent_storage.
+
+Verification:
+I ran these commands and verified the checksums matched exactly: shasum -a 256 server_persistent_storage/mydata.txt shasum -a 256 client_persistent_storage/mydata.txt
+
+The output was: 350fde8bbf16d52e9f5318aacad5864f5c4744be0301dfee9fef40d60f21159e server_persistent_storage/mydata.txt 350fde8bbf16d52e9f5318aacad5864f5c4744be0301dfee9fef40d60f21159e client_persistent_storage/mydata.txt

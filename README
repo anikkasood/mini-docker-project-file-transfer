@@ -1,4 +1,4 @@
-In this assignment, I made 2 docker networks (net_server and net_client) to containerize my client-server application. 
+I made 2 docker networks (net_server and net_client) to containerize my client-server application. 
 I transferred mydata.txt from server/client containers and verified that its values were the same. 
 
 I built my docker containers using: 
